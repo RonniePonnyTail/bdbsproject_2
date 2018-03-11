@@ -14,7 +14,7 @@ if (isset($_POST['submit'])) {
 		header("Location: ../index.php?login=empty");
 		exit();
 	} else {
-		$sql = "SELECT * FROM users WHERE EMAIL = '$EMAIL'";
+		$sql = "SELECT * FROM uzivatel WHERE EMAIL = '$EMAIL'";
 		$result = mysqli_query($conn, $sql);
 		$resultCheck = mysqli_num_rows($result);
 		if ($resultCheck < 1) {
