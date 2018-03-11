@@ -1,6 +1,6 @@
 <?php
 
-if (isset($_POST['submit'])) {
+/*if (isset($_POST['submit'])) {
 	
 	include_once 'dbh.inc.php';
 	$conn = Connect();
@@ -48,4 +48,22 @@ if (isset($_POST['submit'])) {
 } else {
 	header("Location: ../signup.php");
 	exit();
+}*/
+
+require 'dbh.inc.php';
+$conn    = Connect();
+$jmeno   = $conn->real_escape_string($_POST['JMENO']);
+$prijmeni    = $conn->real_escape_string($_POST['PRIJMENI']);
+$email   = $conn->real_escape_string($_POST['LOGIN_EMAIL']);
+$heslo    = $conn->real_escape_string($_POST['HESLO']);
+$hashedHeslo = password_hash($HESLO, PASSWORD_DEFAULT);
+$query   = "INSERT into uzivatel (JMENO, PRIJMENI, LOGIN_EMAIL, HESLO) VALUES('" . $jmeno . "','" . $prijmeni . "','" . $email . "','" . $hashedHeslo . "')";
+$success = $conn->query($query);
+
+if (!$success) {
+    die("Couldn't enter data: ".$conn->error);
 }
+$conn->close();
+
+header("Location: http://halatamusicdatabase.gearhostpreview.com/");
+exit;
