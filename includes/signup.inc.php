@@ -4,10 +4,10 @@ if (isset($_POST['submit'])) {
 	
 	include_once 'dbh.inc.php';
 
-	$JMENO = mysqli_real_escape_string($conn, $_POST['JMENO']);
-	$PRIJMENI = mysqli_real_escape_string($conn, $_POST['PRIJMENI']);
-	$LOGIN_EMAIL = mysqli_real_escape_string($conn, $_POST['LOGIN_EMAIL']);
-	$HESLO = mysqli_real_escape_string($conn, $_POST['HESLO']);
+	$JMENO = $conn->real_escape_string($_POST['JMENO']);
+	$PRIJMENI = $conn->real_escape_string($_POST['PRIJMENI']);
+	$LOGIN_EMAIL = $conn->real_escape_string($_POST['LOGIN_EMAIL']);
+	$HESLO = $conn->real_escape_string($_POST['HESLO']);
 	
 	//Error handlers
 	//check empty fields
