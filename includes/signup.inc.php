@@ -3,7 +3,7 @@
 if (isset($_POST['submit'])) {
 	
 	include_once 'dbh.inc.php';
-
+	$conn = Connect();
 	$JMENO = $conn->real_escape_string($_POST['JMENO']);
 	$PRIJMENI = $conn->real_escape_string($_POST['PRIJMENI']);
 	$LOGIN_EMAIL = $conn->real_escape_string($_POST['LOGIN_EMAIL']);
