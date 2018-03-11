@@ -10,7 +10,7 @@ if (isset($_POST['submit'])) {
 	$HESLO = $conn->real_escape_string($_POST['HESLO']);
 
 	//Kontrola vyplneni
-	if (empty($LOGIN_EMAIL) || empty($LOGIN_EMAIL)) {
+	if (empty($LOGIN_EMAIL) || empty($HESLO)) {
 		header("Location: ../index.php?login=empty");
 		exit();
 	} else {
