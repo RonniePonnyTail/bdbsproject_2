@@ -25,7 +25,7 @@ if (isset($_POST['submit'])) {
 				header("Location: ../signup.php?signup=EMAIL");
 				exit();
 			} else {
-				$sql = "SELECT * FROM users WHERE EMAIL = 'EMAIL'";
+				$sql = "SELECT * FROM uzivatel WHERE EMAIL = 'EMAIL'";
 				$result = mysqli_query($conn, $sql);
 				$resultCheck = mysqli_num_rows($result);
 
@@ -36,7 +36,7 @@ if (isset($_POST['submit'])) {
 					//hashing heslo
 					$hashedHeslo = password_hash($HESLO, PASSWORD_DEFAULT);
 					//Vlozeni do databaze
-					$sql = "INSERT INTO users (JMENO, PRIJMENI, EMAIL, HESLO) VALUES ('$JMENO', '$PRIJMENI', '$EMAIL', '$hashedHeslo');";
+					$sql = "INSERT INTO uzivatel (JMENO, PRIJMENI, EMAIL, HESLO) VALUES ('$JMENO', '$PRIJMENI', '$EMAIL', '$hashedHeslo');";
 					mysqli_query($conn, $sql);
 					header("Location: ../signup.php?signup=success");
 					exit();
