@@ -24,7 +24,7 @@ if (isset($_POST['submit'])) {
 				header("Location: ../signup.php?signup=EMAIL");
 				exit();
 			} else {
-				$sql = "SELECT * FROM uzivatel WHERE LOGIN_EMAIL = 'LOGIN_EMAIL'";
+				$sql = "SELECT * FROM uzivatel WHERE LOGIN_EMAIL = '$LOGIN_EMAIL'";
 				$result = mysqli_query($conn, $sql);
 				$resultCheck = mysqli_num_rows($result);
 
