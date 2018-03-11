@@ -6,12 +6,12 @@ if (isset($_POST['submit'])) {
 
 	$JMENO = mysqli_real_escape_string($conn, $_POST['JMENO']);
 	$PRIJMENI = mysqli_real_escape_string($conn, $_POST['PRIJMENI']);
-	$EMAIL = mysqli_real_escape_string($conn, $_POST['EMAIL']);
+	$LOGIN_EMAIL = mysqli_real_escape_string($conn, $_POST['LOGIN_EMAIL']);
 	$HESLO = mysqli_real_escape_string($conn, $_POST['HESLO']);
 	
 	//Error handlers
 	//check empty fields
-	if (empty($JMENO) || empty($PRIJMENI) || empty($HESLO) || empty($EMAIL)) {
+	if (empty($JMENO) || empty($PRIJMENI) || empty($HESLO) || empty($LOGIN_EMAIL)) {
 		header("Location: ../signup.php?signup=empty");
 		exit();
 	} else {
@@ -21,11 +21,11 @@ if (isset($_POST['submit'])) {
 			exit();
 		} else {
 			//kontrola EMAILu
-			if (!filter_var($EMAIL, FILTER_VALIDATE_EMAIL)) {
+			if (!filter_var($LOGIN_EMAIL, FILTER_VALIDATE_EMAIL)) {
 				header("Location: ../signup.php?signup=EMAIL");
 				exit();
 			} else {
-				$sql = "SELECT * FROM uzivatel WHERE EMAIL = 'EMAIL'";
+				$sql = "SELECT * FROM uzivatel WHERE LOGIN_EMAIL = 'LOGIN_EMAIL'";
 				$result = mysqli_query($conn, $sql);
 				$resultCheck = mysqli_num_rows($result);
 
@@ -36,7 +36,7 @@ if (isset($_POST['submit'])) {
 					//hashing heslo
 					$hashedHeslo = password_hash($HESLO, PASSWORD_DEFAULT);
 					//Vlozeni do databaze
-					$sql = "INSERT INTO uzivatel (JMENO, PRIJMENI, EMAIL, HESLO) VALUES ('$JMENO', '$PRIJMENI', '$EMAIL', '$hashedHeslo');";
+					$sql = "INSERT INTO uzivatel (JMENO, PRIJMENI, LOGIN_EMAIL, HESLO) VALUES ('$JMENO', '$PRIJMENI', '$LOGIN_EMAIL', '$hashedHeslo');";
 					mysqli_query($conn, $sql);
 					header("Location: ../signup.php?signup=success");
 					exit();
