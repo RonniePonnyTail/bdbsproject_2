@@ -26,6 +26,8 @@ if (isset($_POST['submit'])) {
 				$hashedHesloCheck = password_verify($HESLO, $row['HESLO']);
 				if ($hashedHesloCheck == false) {
 					header("Location: ../index.php?login=error2");
+					echo $HESLO;
+					echo $hashedHesloCheck;
 					exit();
 				} elseif($hashedHesloCheck == true) {
 					//Log in user
