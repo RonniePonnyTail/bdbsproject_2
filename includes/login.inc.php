@@ -6,8 +6,8 @@ if (isset($_POST['submit'])) {
 	
 	include 'dbh.inc.php';
 
-	$LOGIN_EMAIL = mysqli_real_escape_string($conn, $_POST['LOGIN_EMAIL']);
-	$HESLO = mysqli_real_escape_string($conn, $_POST['HESLO']);
+	$LOGIN_EMAIL = $conn->real_escape_string($_POST['LOGIN_EMAIL']);
+	$HESLO = $conn->real_escape_string($_POST['HESLO']);
 
 	//Kontrola vyplneni
 	if (empty($LOGIN_EMAIL) || empty($LOGIN_EMAIL)) {
