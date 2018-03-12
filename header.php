@@ -29,6 +29,8 @@ session_start();
 						echo '<form action="includes/logout.inc.php" method="POST">
 							  <button type="submit" name="submit">Logout</button>
 							  </form>';
+						echo "Prihlasen jako: ";
+						echo $_SESSION['u_EMAIL'];
 					}else{
 						echo '<form action ="includes/login.inc.php", method="POST">
 							  <input type="text" name="LOGIN_EMAIL" placeholder = "Email">
