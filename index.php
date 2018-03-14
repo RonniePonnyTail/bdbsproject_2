@@ -8,7 +8,7 @@ include_once 'header.php';
 					if (isset($_SESSION['u_ID'])) {
 						echo '<h2>Hudebni databaze</h2>';
 					}else{
-						echo '<h2>Home</h2>';
+						echo '<h2>Pro pristup do databaze je potreba se prihlasit</h2>';
 					}
 				?>
 	</div>

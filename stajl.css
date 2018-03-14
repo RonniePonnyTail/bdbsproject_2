@@ -262,6 +262,16 @@ footer {
 
 footer p.footer-style {
     font-size: 16px;
+    font-family: arial;
+}
+
+footer a{
+    background-color: #fff;
+}
+
+footer p span{
+    float: right;
+    margin-right: 30px;
 }
 
 .test {
@@ -277,5 +287,9 @@ footer p.footer-style {
     margin-bottom: 15px;
     float: left;
     margin-top: 8px;
+}
+
+.logged-as {
+    margin-right: 50px;
 }
 
