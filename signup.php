@@ -8,10 +8,12 @@ include_once 'header.php';
 		<form class ="signup-form" action="includes/signup.inc.php" method = "POST">
 			<input type="text" name="JMENO" placeholder="Jmeno">
 			<input type="text" name="PRIJMENI" placeholder="Prijemni">
-			<input type="text" name="LOGIN_EMAIL" placeholder="Email">
+			<input type="text" name="EMAIL" placeholder="Email">
 			<input type="password" name="HESLO" placeholder="Heslo">
-			<input type="checkbox" name="PREMIUM" value="Premiovy uzivatel">
-			<p>wtf</p>
+			<label class="container">Premiovy ucet
+  				<input type="checkbox" name="PREMIUM" value="PREMIUM_UCET">
+  				<span class="checkmark"></span>
+			</label>
 			<button type="submit" name="submit">Sign up</button>
 		</form>
 	</div>
