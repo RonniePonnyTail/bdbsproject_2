@@ -10,6 +10,7 @@ include_once 'header.php';
 			<input type="text" name="PRIJMENI" placeholder="Prijemni">
 			<input type="text" name="LOGIN_EMAIL" placeholder="Email">
 			<input type="password" name="HESLO" placeholder="Heslo">
+			<input type="checkbox" name="PREMIUM" value="Premiovy uzivatel">
 			<button type="submit" name="submit">Sign up</button>
 		</form>
 	</div>
