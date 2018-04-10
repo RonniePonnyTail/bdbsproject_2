@@ -250,6 +250,45 @@ header .nav-login a {
     background-color: #111;
 }
 
+/* ADD SONG php*/
+
+.addsong-form {
+    width: 400px;
+    margin-right: 80%;
+    display: inline-block;
+    float: top;
+}
+
+.addsong-form input {
+    width: 90%;
+    height: 40px;
+    padding: 0px 5%;
+    margin-bottom: 4px;
+    border: none;
+    background-color: #fff;
+    font-family: arial;
+    font-size: 16px;
+    color: #111;
+    line-height: 40px;
+}
+
+.addsong-form button {
+    display: block;
+    margin: 0 auto;
+    width: 30%;
+    height: 40px;
+    border: none;
+    background-color: #222;
+    font-family: arial;
+    font-size: 16px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.addsong-form button:hover {
+    background-color: #111;
+}
+
 footer {
     position:fixed;
     left:0px;
@@ -296,7 +335,9 @@ footer p span{
 #customers {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
-    width: 100%;
+    width: 70%;
+    margin-left: 30%;
+    /*display: inline-block;*/
 }
 
 #customers td, #customers th {

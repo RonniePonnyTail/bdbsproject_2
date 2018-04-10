@@ -12,8 +12,22 @@ if(!isset($_SESSION['u_ID']))
 <section class="main-container">
 	<div class="main-wrapper">
 		<H2>Databaze</H2>
-		<?php
-		$result = mysqli_query($conn,"SELECT * FROM hudba");
+		<hr width="100%" color="red">
+		<?php if ($_SESSION['u_STAV']==1){
+			echo '<form class ="addsong-form" action="includes/addSong.inc.php" method = "POST">
+			<input type="text" name="kapela" placeholder="Kapela">
+			<input type="text" name="album" placeholder="Album">
+			<input type="text" name="pisen" placeholder="Píseň">
+			<input type="text" name="delka" placeholder="Délka">
+			<button type="submit" name="submitSong">Uložit</button>
+		</form>';
+		}else{
+			echo "<H3>Pro pridavani do databaze je potreba mit premiovy ucet</H3>";
+		}
+		
+
+		//<?php
+		$result = mysqli_query($conn,"SELECT * FROM hudba ORDER BY KAPELA ASC");
 
 		echo '<table border="1" id="customers">
 		<tr>
@@ -41,3 +55,5 @@ if(!isset($_SESSION['u_ID']))
 <?php
 include_once 'footer.php';
 ?>
+
+
