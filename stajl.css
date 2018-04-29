@@ -29,6 +29,7 @@ time, mark, audio, video {
 
 body {
     line-height:1;
+
 }
 
 article,aside,details,figcaption,figure,
@@ -103,9 +104,16 @@ input, select {
 
 /* my code*/
 
+
+input.button { text-indent: -9000px; 
+    text-transform: capitalize; 
+    width: 80px;
+    margin-left: 35%;
+}
+
 .main-wrapper {
-    margin: 0 auto;
-    width: 95%;
+	margin: 0 auto;
+	width: 95%;
 }
 
 a {
@@ -120,6 +128,7 @@ a:hover {
 
 body {
     background-color: #ccc;
+    
 }
 
 header nav {
@@ -169,7 +178,7 @@ header .nav-login form input {
 
 header .nav-login form button {
     float: left;
-    width: 60px;
+    width: 65px;
     height: 30px;
     margin-right: 10px;
     border: none;
@@ -215,9 +224,19 @@ header .nav-login a {
 /* SIGNUP php*/
 
 .signup-form {
+    padding-left: 20%;
+    display:inline-block;
     width: 400px;
-    margin: 0 auto;
+    margin-right: 10px;
     padding-top: 30px;
+}
+
+.signup-form p {
+    margin-bottom: 10px;
+    font-family: arial;
+    font-size: 24px;
+    color: #111;
+    text-align: center;
 }
 
 .signup-form input {
@@ -289,6 +308,45 @@ header .nav-login a {
     background-color: #111;
 }
 
+/* ADD Playlist php*/
+
+.addplaylist-form {
+    
+    width: 400px;
+    display: inline-block;
+    float: top;
+}
+
+.addplaylist-form input {
+    width: 90%;
+    height: 40px;
+    padding: 0px 5%;
+    margin-bottom: 4px;
+    border: none;
+    background-color: #fff;
+    font-family: arial;
+    font-size: 16px;
+    color: #111;
+    line-height: 40px;
+}
+
+.addplaylist-form button {
+    display: block;
+    margin: 0 auto;
+    width: 30%;
+    height: 40px;
+    border: none;
+    background-color: #222;
+    font-family: arial;
+    font-size: 16px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.addplaylist-form button:hover {
+    background-color: #111;
+}
+
 footer {
     position:fixed;
     left:0px;
@@ -326,17 +384,59 @@ footer p span{
     margin-bottom: 15px;
     float: left;
     margin-top: 8px;
+    text-align-last: center;
 }
 
 .logged-as {
     margin-right: 50px;
 }
 
+
+#myInput {
+    margin-left: 16%;
+    width: 13%; /* Full-width */
+    font-size: 16px; /* Increase font-size */
+    padding: 12px 20px 12px 40px; /* Add some padding */
+    border: 1px solid #ddd; /* Add a grey border */
+    margin-bottom: 12px; /* Add some space below the input */
+    margin-top: 12px;
+}
+
+#myInput1 {
+    width: 13%; /* Full-width */
+    font-size: 16px; /* Increase font-size */
+    padding: 12px 20px 12px 40px; /* Add some padding */
+    border: 1px solid #ddd; /* Add a grey border */
+    margin-bottom: 12px; /* Add some space below the input */
+    margin-top: 12px;
+}
+
+#myInput2 {
+    width: 13%; /* Full-width */
+    font-size: 16px; /* Increase font-size */
+    padding: 12px 20px 12px 40px; /* Add some padding */
+    border: 1px solid #ddd; /* Add a grey border */
+    margin-bottom: 12px; /* Add some space below the input */
+    margin-top: 12px;
+}
+
+#myInput3 {
+    width: 13%; /* Full-width */
+    font-size: 16px; /* Increase font-size */
+    padding: 12px 20px 12px 40px; /* Add some padding */
+    border: 1px solid #ddd; /* Add a grey border */
+    margin-bottom: 12px; /* Add some space below the input */
+    margin-top: 12px;
+}
+
 #customers {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 70%;
-    margin-left: 30%;
+    margin-bottom: 10%;
+    margin-left: 16%;  
+    margin-top: 10px;
+  
     /*display: inline-block;*/
 }
 
@@ -350,6 +450,34 @@ footer p span{
 #customers tr:hover {background-color: #ddd;}
 
 #customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #ff0000;
+    color: white;
+}
+
+/*edit playlist page - music table*/
+#editPlaylistTable {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 50%;
+    margin-left: 0%;
+    margin-bottom: 10%; 
+    margin-top: 10px;
+    display: inline-block;
+}
+
+#editPlaylistTable td, #editPlaylistTable th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#editPlaylistTable tr:nth-child(even){background-color: #f2f2f2;}
+
+#editPlaylistTable tr:hover {background-color: #ddd;}
+
+#editPlaylistTable th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
@@ -422,4 +550,23 @@ footer p span{
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
+}
+
+
+ .odkaz-styl a {
+    display: inline-block;
+    margin-left: 28%;
+    width: 150px;
+    height: 50px;
+    border: none;
+    text-align: center;
+    background-color: #f3f3f3;
+    font-family: arial;
+    font-size: 18px;
+    color: #111;
+    cursor: pointer;
+}
+
+.odkaz-styl a:hover {
+    background-color: #ffcc99;
 }

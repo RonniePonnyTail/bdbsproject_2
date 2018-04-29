@@ -6,8 +6,9 @@ include_once 'header.php';
 	<div class="main-wrapper">
 		<?php
 					if (isset($_SESSION['u_ID'])) {
-						echo '<h2>Hudebni databaze</h2>';
-					}else{
+						header("Location: logged.php");
+					}
+					else{
 						echo '<h2>Pro pristup do databaze je potreba se prihlasit</h2>';
 					}
 				?>

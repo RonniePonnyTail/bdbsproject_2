@@ -16,7 +16,7 @@ if (isset($_POST['submitSong'])) {
 		header("Location: ../databaze.php?addSong=empty");
 		exit();
 	} else {
-			$sql = "SELECT * FROM hudba WHERE KAPELA = 'Kapela'";
+			$sql = "SELECT * FROM hudba WHERE PISEN = '$Pisen'";
 			$result = mysqli_query($conn, $sql);
 			$resultCheck = mysqli_num_rows($result);
 			if ($resultCheck > 0) {
