@@ -1,8 +1,8 @@
 <?php
+session_start();
 if (isset($_POST['ID_playlist'])) {
 
 	include_once 'dbh.inc.php';
-	include '../browsePlaylist.php';
 
 	$_SESSION['p_ID_CD'] = $_POST['ID_playlist'];
 	$sql = "SELECT * FROM cd WHERE ID_CD = ".$_SESSION['p_ID_CD']."";

@@ -1,5 +1,5 @@
 <?php
-include '../addPlaylist.php';
+session_start();
 if (isset($_POST['createPlaylist'])) {
 	
 	include_once 'dbh.inc.php';
@@ -18,7 +18,7 @@ if (isset($_POST['createPlaylist'])) {
 			$result = mysqli_query($conn, $sql);
 			$resultCheck = mysqli_num_rows($result);
 			if ($resultCheck > 0) {
-				header("Location: ../addPlaylist.php?addPlaylist=playlistreadyexists");
+				header("Location: ../addPlaylist.php?addPlaylist=playlistreadyexists&addedSong=ready");
 				exit();
 			} else {
 				//Vlozeni do databaze
@@ -34,7 +34,7 @@ if (isset($_POST['createPlaylist'])) {
 				$_SESSION['p_NAZEV'] = $row['NAZEV'];
 				$_SESSION['p_POPIS'] = $row['POPIS'];
 				$_SESSION['p_ID_CD'] = $row['ID_CD'];
-				header("Location: ../editPlaylist.php?addPlaylist=success".$_SESSION['p_ID_CD']."");
+				header("Location: ../editPlaylist.php?addPlaylist=success&addedSong=ready");
 				exit();
 			}
 		}

@@ -440,6 +440,19 @@ footer p span{
     /*display: inline-block;*/
 }
 
+#customers a {
+    display: block;
+    margin: 0 auto;
+    width: auto;
+    height: auto;
+    border: none;
+    background-color: #ff0000;
+    font-family: arial;
+    font-size: 16px;
+    color: #f2f2f2;
+    cursor: pointer;
+}
+
 #customers td, #customers th {
     border: 1px solid #ddd;
     padding: 8px;
@@ -466,6 +479,7 @@ footer p span{
     margin-bottom: 10%; 
     margin-top: 10px;
     display: inline-block;
+    float: left;     
 }
 
 #editPlaylistTable td, #editPlaylistTable th {
@@ -483,6 +497,19 @@ footer p span{
     text-align: left;
     background-color: #ff0000;
     color: white;
+}
+
+#editPlaylistTable a {
+    display: block;
+    margin: 0 auto;
+    width: auto;
+    height: auto;
+    border: none;
+    background-color: #ff0000;
+    font-family: arial;
+    font-size: 16px;
+    color: #f2f2f2;
+    cursor: pointer;
 }
 
 /* The container */

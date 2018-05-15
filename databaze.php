@@ -1,8 +1,20 @@
+
 <?php
 include_once 'header.php';
 include 'includes/dbh.inc.php';
 ?>
+
 <script>
+function VyplnUdajePopUp()
+{
+alert("Nebyly vyplneny udaje");
+}
+
+function AlreadyExists()
+{
+alert("Pisnicka uz je vlozena");
+}
+
 function myFunctionBand() {
   // Declare variables 
   var input, filter, table, tr, td, i;
@@ -88,6 +100,15 @@ function myFunctionDelka() {
 }
 </script>
 
+<?php 
+  if ($_GET['addSong'] == 'empty') {
+    echo '<script>VyplnUdajePopUp()</script>';
+  }
+  if ($_GET['addSong'] == 'SongAlredyExist') {
+    echo '<script>AlreadyExists()</script>';
+  }
+?>
+
 <?php
 if(!isset($_SESSION['u_ID']))
 {
@@ -99,7 +120,7 @@ if(!isset($_SESSION['u_ID']))
 	<div class="main-wrapper">
 		<H2>Databaze</H2>
 		<hr width="100%" color="red">
-		<?php if ($_SESSION['u_STAV']==1){
+		<?php if ($_SESSION['u_STAV']==1 || $_SESSION['u_STAV']== 3){
 
 			echo '<form class ="signup-form" action="includes/addSong.inc.php" method = "POST">
 			<p> Pridat pisen do databaze </p>
@@ -109,24 +130,19 @@ if(!isset($_SESSION['u_ID']))
 			<input type="text" name="delka" placeholder="Delka">
 			<button type="submit" name="submitSong">Pridat</button>
 		</form>';
+  }else
+  {
+    echo "<H3>Pro pridavani do databaze je potreba mit premiovy ucet</H3>";
+  }
 
 		echo "<p></p><input type='text' id='myInput' onkeyup='myFunctionBand()' placeholder='Hledej podle kapely..'>";
 		echo "<input type='text' id='myInput1' onkeyup='myFunctionAlbum()' placeholder='Hledej podle Alba..'>";
 		echo "<input type='text' id='myInput2' onkeyup='myFunctionPisen()' placeholder='Hledej podle Pisne..'>";
 		echo "<input type='text' id='myInput3' onkeyup='myFunctionDelka()' placeholder='Hledej podle Delky..'>";
 
-		/*echo '<form class ="signup-form" action="includes/filterSong.inc.php" method = "POST">
-			<p> Vyhledat pisen </p>
-			<input type="text" name="kapela" placeholder="Kapela">
-			<input type="text" name="album" placeholder="Album">
-			<input type="text" name="pisen" placeholder="Pisen">
-			<input type="text" name="delka" placeholder="Delka">
-			<button type="submit" name="filterSong">Hledat</button>
-		</form>';*/
-
-		}else{
-			echo "<H3>Pro pridavani do databaze je potreba mit premiovy ucet</H3>";
-		}
+		
+			
+		
 
 		
 		$orderBy = array('Kapela', 'Album', 'Pisen', 'Delka');
@@ -134,17 +150,21 @@ if(!isset($_SESSION['u_ID']))
 		if (isset($_GET['sort']) && in_array($_GET['sort'], $orderBy)) {
 		    $order = $_GET['sort'];	   
 		}
-		$sql = "SELECT * FROM hudba ORDER BY ".$order." ASC";
+		$sql = "SELECT * FROM hudba WHERE hudba.STAV = 0 ORDER BY ".$order." ASC";
 
 		$result = mysqli_query($conn, $sql);
 
 		echo '<table border="1" id="customers">
 		<tr>
-		<th><a href="databaze.php?sort=Kapela">Kapela</a></th>
-		<th><a href="databaze.php?sort=Album">Album</a></th>
-		<th><a href="databaze.php?sort=Pisen">Pisen</a></th>
-		<th><a href="databaze.php?sort=Delka">Delka</a></th>
-		</tr>';
+		<th><a href="databaze.php?sort=Kapela&addSong=Ready">Kapela</a></th>
+		<th><a href="databaze.php?sort=Album&addSong=Ready">Album</a></th>
+		<th><a href="databaze.php?sort=Pisen&addSong=Ready">Pisen</a></th>
+		<th><a href="databaze.php?sort=Delka&addSong=Ready">Delka</a></th>';
+    if( $_SESSION['u_STAV']==1 || $_SESSION['u_STAV']== 3){
+      echo '<th>Odebrat</th>
+    </tr>';
+    }
+    
 
 		while($row = mysqli_fetch_array($result))
 		{
@@ -153,6 +173,12 @@ if(!isset($_SESSION['u_ID']))
 		echo "<td>" . $row['ALBUM'] . "</td>";
 		echo "<td>" . $row['PISEN'] . "</td>";
 		echo "<td>" . $row['DELKA'] . "</td>";
+    if( $_SESSION['u_STAV']==1 || $_SESSION['u_STAV']== 3){
+      echo "<td>
+      <form action ='includes/deleteSong.inc.php' method = 'POST'>
+      <input class='button' type='submit' name = 'ID_songToDelete' value = '".$row['ID_HUDBA']."'>
+      </td>";
+      }
 		echo "</tr>";
 		}
 		echo '</table>';

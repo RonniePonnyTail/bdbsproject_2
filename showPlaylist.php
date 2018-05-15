@@ -9,21 +9,27 @@ include 'includes/dbh.inc.php';
 		<hr width="100%" color="red">
 		<section class="odkaz-styl">
 	<div>
-		<a class ="test" href="editPlaylist.php">Editovat playlist</a> 
+		<a class ="test" href="editPlaylist.php?addedSong=YouCanAdd">Editovat playlist</a> 
 	</div>
 	</section>
 		<hr width="100%" color="red"> 
 		<?php
-		$sql = "SELECT * FROM hudba JOIN playlist ON hudba.ID_HUDBA = playlist.ID_HUDBA WHERE playlist.ID_CD = ".$_SESSION['p_ID_CD']."";
+
+		$orderBy = array('Kapela', 'Album', 'Pisen', 'Delka');
+		$order = 'Kapela';
+		if (isset($_GET['sort']) && in_array($_GET['sort'], $orderBy)) {
+		    $order = $_GET['sort'];	   
+		}
+
+		$sql = "SELECT * FROM hudba JOIN playlist ON hudba.ID_HUDBA = playlist.ID_HUDBA WHERE playlist.ID_CD = ".$_SESSION['p_ID_CD']." ORDER BY ".$order." ASC";
 		$result = mysqli_query($conn,$sql);
 
 		echo '<table border="1" id="customers">
 		<tr>
-		<th>Kapela</th>
-		<th>Album</th>
-		<th>Pisen</th>
-		<th>Delka</th>
-		<th>Odebrat z playlistu</th>
+		<th><a href="showPlaylist.php?sort=Kapela">Kapela</a></th>
+		<th><a href="showPlaylist.php?sort=Album">Album</a></th>
+		<th><a href="showPlaylist.php?sort=Pisen">Pisen</a></th>
+		<th><a href="showPlaylist.php?sort=Delka">Delka</a></th>
 		</tr>';
 
 		while($row = mysqli_fetch_array($result))
@@ -33,10 +39,6 @@ include 'includes/dbh.inc.php';
 		echo "<td>" . $row['ALBUM'] . "</td>";
 		echo "<td>" . $row['PISEN'] . "</td>";
 		echo "<td>" . $row['DELKA'] . "</td>";
-		echo "<td>
-				<form action ='includes/deleteSongFromPlaylist.inc.php' method = 'POST'>
-				<input class='button' type='submit' name = 'ID_songDelete' value = '".$row['ID_HUDBA']."'>
-				</td>";
 		echo "</tr>";
 		}
 		echo '</table>';

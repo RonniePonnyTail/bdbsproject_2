@@ -7,13 +7,14 @@ include 'includes/dbh.inc.php';
 		<H2>Vase Playlisty</H2>
 		<hr width="100%" color="red">
 		<?php
-		$result = mysqli_query($conn,"SELECT * FROM cd ORDER BY NAZEV ASC");
+		$result = mysqli_query($conn,"SELECT * FROM cd WHERE STAV = 0 ORDER BY NAZEV ASC");
 
 		echo '<table border="1" id="customers">
 		<tr>
 		<th>Nazev playlistu</th>
 		<th>Popis</th>
 		<th>Prochazet</th>
+		<th>Vymazat</th>
 		</tr>';
 
 		while($row = mysqli_fetch_array($result))
@@ -25,7 +26,11 @@ include 'includes/dbh.inc.php';
 				echo "<td>
 				<form action ='includes/showPlaylist.inc.php' method = 'POST'>
 				<input class='button' type='submit' name = 'ID_playlist' value = '".$row['ID_CD']."'>
-				</td>";
+				</form></td>";
+				echo "<td>
+		        <form action ='includes/deletePlaylist.inc.php' method = 'POST'>
+		        <input class='button' type='submit' name = 'ID_playlistToDelete' value = '".$row['ID_CD']."'>
+		        </td>";
 				echo "</tr>";
 			}
 		}

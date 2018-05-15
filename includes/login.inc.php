@@ -6,15 +6,15 @@ if (isset($_POST['submit'])) {
 	
 	include 'dbh.inc.php';
 
-	$LOGIN_EMAIL = $conn->real_escape_string($_POST['LOGIN_EMAIL']);
-	$HESLO = $conn->real_escape_string($_POST['HESLO']);
+	$EMAIL = mysqli_real_escape_string($conn, $_POST['EMAIL']);
+	$HESLO = mysqli_real_escape_string($conn, $_POST['HESLO']);
 
 	//Kontrola vyplneni
-	if (empty($LOGIN_EMAIL) || empty($HESLO)) {
+	if (empty($EMAIL) || empty($HESLO)) {
 		header("Location: ../index.php?login=empty");
 		exit();
 	} else {
-		$sql = "SELECT * FROM uzivatel WHERE LOGIN_EMAIL = '$LOGIN_EMAIL'";
+		$sql = "SELECT * FROM uzivatel WHERE EMAIL = '$EMAIL'";
 		$result = mysqli_query($conn, $sql);
 		$resultCheck = mysqli_num_rows($result);
 		if ($resultCheck < 1) {
@@ -26,16 +26,25 @@ if (isset($_POST['submit'])) {
 				$hashedHesloCheck = password_verify($HESLO, $row['HESLO']);
 				if ($hashedHesloCheck == false) {
 					header("Location: ../index.php?login=error2");
+					$_SESSION['ERROR'] = true; 
+					$_SESSION['Hashed'] = $row['HESLO'];
 					exit();
 				} elseif($hashedHesloCheck == true) {
-					//Log in user
-					$_SESSION['u_ID'] = $row['ID_PU'];
-					$_SESSION['u_EMAIL'] = $row['LOGIN_EMAIL'];
+					if($row['STAV'] == 0){
+						header("Location: ../index.php?login=Blocked");
+						exit();
+					}else{
+						//Log in user
+					$_SESSION['u_ID'] = $row['ID'];
+					$_SESSION['u_EMAIL'] = $row['EMAIL'];
 					$_SESSION['u_JMENO'] = $row['JMENO'];
 					$_SESSION['u_PRIJMENI'] = $row['PRIJMENI'];
 					$_SESSION['u_STAV'] = $row['STAV'];
 					header("Location: ../index.php?login=success");
+
 					exit();
+					}
+					
 				}
 			}
 		}
